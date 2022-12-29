@@ -32,7 +32,7 @@ For your convenience, we are packing everything for the testnet in a docker incl
 To be able to follow these instructions and sucessfully run a node, you will need the following:
 
 - Hardware with enough resources for running an Ethereum Validator: 16 GB of RAM, Quad-core or Dual-core hyperthreaded, 1TB SDD
-- Supported platforms are Ubuntu/Linux based prefferably but you can use the Docker on MacOS and Windows as well
+- Supported platforms are Ubuntu or any Linux based distribution preferably. But you can use the Docker on MacOS and Windows as well
 - Manual Credentials provided by Diva (these are needing during the testnet-zero phase):
   - One custom ``NODEID``
   - One or more custom ``KEYSHARE``
