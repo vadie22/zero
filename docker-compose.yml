@@ -1,0 +1,77 @@
+version: '3.9'
+
+services:
+  geth:
+    image: ethereum/client-go:v1.10.25
+    restart: unless-stopped
+    command:
+      [
+        "--goerli",
+        "--http",
+        "--http.api=eth,net,engine,web3",
+        "--http.addr=0.0.0.0",
+        "--ws",
+        "--ws.api=eth,net,engine,web3",
+        "--ws.addr=0.0.0.0",
+        "--ws.origins=*",
+        "--authrpc.addr=0.0.0.0",
+        "--authrpc.port=8551",
+        "--authrpc.vhosts=*",
+        "--authrpc.jwtsecret=/opt/diva/config/jwt"
+      ]
+    volumes:
+      - "./geth-data:/root/.ethereum"
+      - "./config:/opt/diva/config"
+    ports:
+      - "3334:3334"
+      - "8545:8545"
+      - "8546:8546"
+      - "8551:8551"
+      - "30303:30303"
+
+  teku:
+    environment:
+      - "JAVA_OPTS=-Xmx4g"
+    image: consensys/teku:22.9.0
+    user: root
+    command:
+      [
+        "--network=prater",
+        "--data-base-path=/opt/teku/data",
+        "--ee-jwt-secret-file=/opt/diva/config/jwt",
+        "--ee-endpoint=http://geth:8551",
+        "--validators-external-signer-url=http://diva:9000",
+        "--validators-external-signer-public-keys=http://diva:9000/api/v1/eth2/publicKeys",
+        "--validators-proposer-default-fee-recipient=0xd945993f2F4b3D6Bd30ca6903F53E04dca88adBF",
+        "--p2p-port=9000",
+        "--rest-api-enabled=true",
+        "--rest-api-docs-enabled=true",
+        "--rest-api-host-allowlist=*",
+        "--initial-state=https://checkpoint-sync-prater.dappnode.io"
+      ]
+    volumes:
+      - "./teku-data:/opt/teku/data"
+      - "./config:/opt/diva/config"
+    ports:
+      - "9999:9000"
+      - "5051:5051"
+    restart: always
+
+  diva:
+    image: ghcr.io/xyzmap/diva:22.12.1-94a0635
+    command:
+      - 'server'
+      - '--db=/opt/diva/diva.db'
+      - '--w3s-address=0.0.0.0'
+      - '--swagger-ui-enabled'
+      - '--bootnode-address=/ip4/75.119.153.133/tcp/5050/p2p/16Uiu2HAmMHAMXeA9bKJx7ne6UsWsH52L8s8euFWbbxNFDuYji466'
+      - '--execution-client-url=ws://geth:8546'
+      - '--consensus-client-url=http://teku:5051'
+    environment:
+      - HTTP_AUTH_TOKEN=SECRET_AUTH_TOKEN
+      - DIVA_VAULT_PASSWORD=VAULT_PASSWORD
+    ports:
+      - 9000:9000
+      - 5050:5050
+      - 80:30000
+    restart: always
