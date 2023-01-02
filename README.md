@@ -26,6 +26,8 @@ For your convenience, we are packing everything for the testnet in a docker incl
 - [ ] DKG (coming soon)
 - [ ] Oracle (coming soon)
 
+> **Warning**
+> This tesnet is exposing different services, please note there is not security measures in place and your sytems could be at risk.
 
 ## Instructions
 ### Prerequisites
