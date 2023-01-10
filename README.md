@@ -76,7 +76,7 @@ curl --location --request DELETE 'http://localhost:80/api/v1/keymanager/node-key
 6. Install as many Key-Shares as you have, relace the values for KEYSHARE:
 ```
 curl --location --request PUT 'http://localhost:80/api/v1/keymanager/signing-key' \
---header 'Authorization: Bearer SECRET_AUTHq_TOKEN' \
+--header 'Authorization: Bearer SECRET_AUTH_TOKEN' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "secret_key": "KEYSHARE"
