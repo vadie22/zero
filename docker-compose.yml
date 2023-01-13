@@ -58,7 +58,7 @@ services:
     restart: always
 
   diva:
-    image: ghcr.io/vadie22/diva:22.12.1-94a0635
+    image: ghcr.io/divalabs/diva:v23.1.0-beta
     command:
       - 'server'
       - '--db=/opt/diva/diva.db'
