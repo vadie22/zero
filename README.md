@@ -98,5 +98,5 @@ Access to your dashboard from a browser: ``http://YOUR_PUBLIC_IP/#/dashboard``
 
 You can also:
 
-- ``docker logs zero-geth-1`` to view the Geth Ethereum Execution Client logs (add ``-f`` for streaming logs)
-- ``docker logs zero-teku-1`` to view the Teku Ethereum Consensus Client logs (add ``-f`` for streaming logs)
+- ``docker logs zero-geth-1`` to view the Geth Ethereum Execution Client logs (add ``-f`` for streaming logs, ``-n 100`` for the last 100 lines of logs)
+- ``docker logs zero-teku-1`` to view the Teku Ethereum Consensus Client logs (add ``-f`` for streaming logs, ``-n 100`` for the last 100 lines of logs)
