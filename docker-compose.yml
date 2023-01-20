@@ -64,7 +64,7 @@ services:
       - '--db=/opt/diva/diva.db'
       - '--w3s-address=0.0.0.0'
       - '--swagger-ui-enabled'
-      - '--bootnode-address=/ip4/147.75.87.165/tcp/4001/p2p/12D3KooWGRJo1vLDBtfS8a4cVss2QVqvbCaPgtmwwgpUtW675QRa'      
+      - '--bootnode-address=/ip4/75.119.153.133/tcp/5050/p2p/16Uiu2HAmMHAMXeA9bKJx7ne6UsWsH52L8s8euFWbbxNFDuYji466'     
       - '--execution-client-url=ws://geth:8546'
       - '--consensus-client-url=http://teku:5051'
     environment:
