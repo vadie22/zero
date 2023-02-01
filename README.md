@@ -69,11 +69,7 @@ Your clients will start syncing. Meanwhile, you can emulate the registration tha
 ### Manual Registration (testnet-zero only)
 
 
-5. Delete the node identity:
-```
-curl --location --request DELETE 'http://localhost:80/api/v1/keymanager/node-key'
-```
-6. Install as many Key-Shares as you have, replace the values for KEYSHARE:
+5. Install as many Key-Shares as you have, replace the values for KEYSHARE:
 ```
 curl --location --request PUT 'http://localhost:80/api/v1/keymanager/signing-key' \
 --header 'Authorization: Bearer SECRET_AUTH_TOKEN' \
@@ -82,7 +78,7 @@ curl --location --request PUT 'http://localhost:80/api/v1/keymanager/signing-key
     "secret_key": "KEYSHARE"
 }'
 ```
-7. Register the node, replace the values for NODEID:
+6. Register the node, replace the values for NODEID:
 
 ```
 curl --location --request POST 'http://localhost:80/api/v1/keymanager/node-key' \
