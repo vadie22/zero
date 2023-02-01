@@ -56,9 +56,7 @@ services:
       - "9999:9000"
       - "5051:5051"
     restart: always
-  version: '3.9'
 
-services:
   diva:
     image: ghcr.io/divalabs/diva:v23.1.1-beta-1-gb73f9c8
     command:
