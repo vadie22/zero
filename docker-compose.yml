@@ -56,22 +56,34 @@ services:
       - "9999:9000"
       - "5051:5051"
     restart: always
+  version: '3.9'
 
+services:
   diva:
-    image: ghcr.io/divalabs/diva:v23.1.0-beta
+    image: ghcr.io/divalabs/diva:v23.1.1-beta-1-gb73f9c8
     command:
       - 'server'
       - '--db=/opt/diva/diva.db'
       - '--w3s-address=0.0.0.0'
       - '--swagger-ui-enabled'
-      - '--bootnode-address=/ip4/75.119.153.133/tcp/5050/p2p/16Uiu2HAmMHAMXeA9bKJx7ne6UsWsH52L8s8euFWbbxNFDuYji466'     
       - '--execution-client-url=ws://geth:8546'
       - '--consensus-client-url=http://teku:5051'
+      - '--tracing'
+      - '--log-level=debug'
     environment:
-      - HTTP_AUTH_TOKEN=SECRET_AUTH_TOKEN
-      - DIVA_VAULT_PASSWORD=VAULT_PASSWORD
+      - DIVA_VAULT_PASSWORD=divatest
+      - OTEL_EXPORTER_JAEGER_AGENT_HOST=jaeger-agent
+      - OTEL_EXPORTER_JAEGER_AGENT_PORT=6831
+    volumes:
+      - ./data/:/opt/diva/
     ports:
       - 9000:9000
       - 5050:5050
-      - 80:30000
+      - 30000:30000
+    restart: always
+
+  jaeger-agent:
+    image: jaegertracing/jaeger-agent:1.41
+    environment:
+      - REPORTER_GRPC_HOST_PORT=95.217.47.46:14250
     restart: always
