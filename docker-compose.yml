@@ -73,7 +73,7 @@ services:
       - OTEL_EXPORTER_JAEGER_AGENT_HOST=jaeger-agent
       - OTEL_EXPORTER_JAEGER_AGENT_PORT=6831
     volumes:
-      - ./data/:/opt/diva/
+      - ./data/:/opt/diva/data/
     ports:
       - 9000:9000
       - 5050:5050
