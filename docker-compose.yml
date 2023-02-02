@@ -61,7 +61,7 @@ services:
     image: ghcr.io/divalabs/diva:v23.1.1-beta-1-gb73f9c8
     command:
       - 'server'
-      - '--db=/opt/diva/diva.db'
+      - '--db=/opt/diva/data/diva.db'
       - '--w3s-address=0.0.0.0'
       - '--swagger-ui-enabled'
       - '--execution-client-url=ws://geth:8546'
